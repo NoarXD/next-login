@@ -12,6 +12,7 @@ function WellcomePage() {
     const [chat, setChat] = useState("");
     const from = session?.user?.name;
     const [getChat, setGetChat] = useState([]);
+    const https = process.env.PORT || "https://1c51-154-222-5-72.ngrok-free.app"
 
     if (!session) {
         redirect("/login");
@@ -19,7 +20,7 @@ function WellcomePage() {
 
     const fetchChats = async () => {
         try {
-            const res = await fetch("http://localhost:3000/api/getChat");
+            const res = await fetch(https + "/api/getChat");
             const data = await res.json();
             console.log(data);
             if (data.result) {
@@ -37,7 +38,7 @@ function WellcomePage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch("http://localhost:3000/api/sendChat", {
+            const res = await fetch(https + "/api/sendChat", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",

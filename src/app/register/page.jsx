@@ -15,6 +15,7 @@ function RegisterPage() {
     const [success, setSuccess] = useState("");
     const { data: session } = useSession()
     const router = useRouter()
+    const https = process.env.PORT || "https://1c51-154-222-5-72.ngrok-free.app"
 
     if (session) router.replace('/welcome')
 
@@ -34,7 +35,7 @@ function RegisterPage() {
 
         try {
             const resCheckUser = await fetch(
-                "http://localhost:3000/api/checkUser",
+                https + "/api/checkUser",
                 {
                     method: "POST",
                     headers: {
@@ -50,7 +51,7 @@ function RegisterPage() {
                 return;
             }
 
-            const res = await fetch("http://localhost:3000/api/register", {
+            const res = await fetch(https + "/api/register", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
