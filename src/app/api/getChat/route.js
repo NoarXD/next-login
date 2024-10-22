@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { connectMongoDB } from "../../../../lib/mongodb";
 import Chat from "../../../../models/chat";
 
-export async function GET(req) {
+export async function GET(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     try {
         await connectMongoDB()
