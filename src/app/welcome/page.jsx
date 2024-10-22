@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import Navbar from "../components/Navbar";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
@@ -12,13 +12,13 @@ function WellcomePage() {
     const [chat, setChat] = useState("");
     const from = session?.user?.name;
     const [getChat, setGetChat] = useState([]);
-    const https = process.env.PORT || "https://millerchat.netlify.app"
+    const https = process.env.PORT || "https://millerchat.netlify.app";
 
     if (!session) {
         redirect("/login");
     }
 
-    const fetchChats = async () => {
+    const fetchChats = useCallback(async () => {
         try {
             const res = await fetch(https + "/api/getChat");
             const data = await res.json();
@@ -29,10 +29,10 @@ function WellcomePage() {
         } catch (error) {
             console.log(error);
         }
-    };
+    }, [https]);
 
     useEffect(() => {
-        
+        fetchChats();
     }, [fetchChats]);
 
     const handleSubmit = async (e) => {
@@ -87,11 +87,15 @@ function WellcomePage() {
                     <div>
                         <h1>Chat List</h1>
                         <ul>
-                            {getChat.slice().reverse().map((chat) => (
-                                <li key={chat._id}>
-                                    <strong>{chat.from}:</strong> {chat.chat}
-                                </li>
-                            ))}
+                            {getChat
+                                .slice()
+                                .reverse()
+                                .map((chat) => (
+                                    <li key={chat._id}>
+                                        <strong>{chat.from}:</strong>{" "}
+                                        {chat.chat}
+                                    </li>
+                                ))}
                         </ul>
                     </div>
                 </div>

@@ -4,10 +4,9 @@ import { connectMongoDB } from "../../../../../lib/mongodb";
 import User from "../../../../../models/user";
 import bcrypt from "bcryptjs"
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
-import mongodb from "../../../../../lib/mongodb"
 
 const authOptions = {
-  adapter: MongoDBAdapter(mongodb),
+  adapter: MongoDBAdapter(connectMongoDB),
     providers: [
         CredentialsProvider({
           name: 'credentials',
