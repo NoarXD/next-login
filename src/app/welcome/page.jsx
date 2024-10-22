@@ -32,8 +32,8 @@ function WellcomePage() {
     };
 
     useEffect(() => {
-        fetchChats();
-    }, []);
+        
+    }, [fetchChats]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
