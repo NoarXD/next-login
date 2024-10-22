@@ -15,7 +15,7 @@ function RegisterPage() {
     const [success, setSuccess] = useState("");
     const { data: session } = useSession()
     const router = useRouter()
-    const https = process.env.PORT || "https://1c51-154-222-5-72.ngrok-free.app"
+    const https = process.env.PORT || "https://millerchat.netlify.app"
 
     if (session) router.replace('/welcome')
 

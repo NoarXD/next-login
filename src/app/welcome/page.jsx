@@ -12,7 +12,7 @@ function WellcomePage() {
     const [chat, setChat] = useState("");
     const from = session?.user?.name;
     const [getChat, setGetChat] = useState([]);
-    const https = process.env.PORT || "https://1c51-154-222-5-72.ngrok-free.app"
+    const https = process.env.PORT || "https://millerchat.netlify.app"
 
     if (!session) {
         redirect("/login");
